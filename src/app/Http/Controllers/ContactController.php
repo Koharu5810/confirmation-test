@@ -13,20 +13,21 @@ class ContactController extends Controller
     {
         $categories = Category::all();
 
+        // $contact_form = session('contact_data',[]);
+
         return view('index', compact('categories'));
     }
 // お問い合わせフォーム→確認画面
     public function confirm(ContactRequest $request)
     {
-        $tell = implode('-',[$request->tell1, $request->tell2, $request->tell3]);
-
         $category = Category::find($request->category_id);
 
         $contact = $request->only([
             'last_name', 'first_name','gender', 'email', 'address', 'building', 'category_id', 'detail'
         ]);
 
-        // 値を加工する必要があるカラムの処理
+        // 電話番号を加工する処理
+        $tell = implode('-',[$request->tell1, $request->tell2, $request->tell3]);
         $contact['tell'] = $tell;
 
         if($category){
@@ -34,6 +35,9 @@ class ContactController extends Controller
         } else {
             $contact['category'] = null;
         }
+
+        // session(['contact_data' => $contact]);
+        // session()->flash('old_values', $contact);
 
         return view('confirm', compact('contact'));
     }
