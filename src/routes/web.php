@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 
 /*
@@ -23,4 +23,11 @@ Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
 
 // 新規登録・ログイン画面
-Route::get('/register', [AuthorController::class, 'register']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'store']);
+
+
+// Fortify認証（認証されれば管理画面へ）
+Route::middleware('auth')->group(function() {
+    Route::get('/admin', [AuthController::class,'login']);
+});

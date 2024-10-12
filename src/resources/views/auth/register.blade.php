@@ -6,7 +6,7 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">register</button>
+    <button class="hedaer_button">login</button>
 @endsection
 
 @section('content')
@@ -17,48 +17,46 @@
     </div>
 
     <div class="form-container">
-        <form action="" class="register-form">
+        <form class="register-form" action="/register" method="post">
             @csrf
 {{-- お名前 --}}
             <div class="register-form__group">
                 <div class="register-form__label">
-                    <label class="register-form__label--item" for="register_name">お名前</label>
+                    <label class="register-form__label--item" for="name">お名前</label>
                 </div>
-                <div class="regiser-form__content">
-                    <input type="text" name="register_name" placeholder="例:山田　太郎" value="{{ old('register_name') }}">
+                <div class="register-form__content">
+                    <input type="text" name="name" placeholder="例:山田  太郎" value="{{ old('name') }}">
                 </div>
                 <div class="register-form__error">
-                    @error('register_name')
+                    @error('name')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
-            @csrf
 {{-- メールアドレス --}}
             <div class="register-form__group">
                 <div class="register-form__label">
-                    <label class="register-form__label--item" for="register_email">メールアドレス</label>
+                    <label class="register-form__label--item" for="email">メールアドレス</label>
                 </div>
-                <div class="regiser-form__content">
-                    <input type="text" name="register_email" placeholder="例:test@example.com" value="{{ old('register_email') }}">
+                <div class="register-form__content">
+                    <input type="email" name="email" placeholder="例:test@example.com" value="{{ old('email') }}">
                 </div>
                 <div class="register-form__error">
-                    @error('register_email')
+                    @error('email')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
-            @csrf
 {{-- パスワード --}}
             <div class="register-form__group">
                 <div class="register-form__label">
-                    <label class="register-form__label--item" for="register_password">お名前</label>
+                    <label class="register-form__label--item" for="password">パスワード</label>
                 </div>
-                <div class="regiser-form__content">
-                    <input type="text" name="register_password" placeholder="例:coachtech1106" value="{{ old('register_password') }}">
+                <div class="register-form__content">
+                    <input type="password" name="password" placeholder="例:coachtech1106" value="{{ old('password') }}">
                 </div>
                 <div class="register-form__error">
-                    @error('register_password')
+                    @error('password')
                     {{ $message }}
                     @enderror
                 </div>
