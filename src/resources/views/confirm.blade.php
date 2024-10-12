@@ -9,7 +9,7 @@
 
 <div>
     <div>
-        <h3>Confirm</h3>
+        <h3 calss="content-title">Confirm</h3>
     </div>
 
     <form class="form" action="/contacts" method="post">
@@ -76,6 +76,7 @@
                 </tr>
             </table>
         </div>
+        {{-- 送信・修正ボタン --}}
         <div class="form__button">
             <button class="form__button-submit">送信</button>
             <button class="form__button-correct" type="button" onclick="history.back()">修正</button>

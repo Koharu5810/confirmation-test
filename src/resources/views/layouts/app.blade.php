@@ -13,7 +13,10 @@
 <body>
     <header>
         <div>
-            <h2>FashionablyLate</h2>
+            <h2 class="content-logo">FashionablyLate</h2>
+        </div>
+        <div>
+            @yield('button')
         </div>
     </header>
 

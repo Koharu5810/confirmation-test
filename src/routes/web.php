@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,10 @@ use App\Http\Controllers\ContactController;
 |
 */
 
+// お問い合わせフォーム
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
+
+// 新規登録・ログイン画面
+Route::get('/register', [AuthorController::class, 'register']);

@@ -9,7 +9,7 @@
 
 <div>
     <div>
-        <h3>Contact</h3>
+        <h3 calss="content-title">Contact</h3>
     </div>
 
     <form class="form" action="/confirm" method="post">
@@ -165,6 +165,7 @@
                 @enderror
             </div>
         </div>
+{{-- 送信ボタン --}}
         <div class="form__button">
             <button class="form__button-submit" type="submit">確認画面</button>
         </div>
