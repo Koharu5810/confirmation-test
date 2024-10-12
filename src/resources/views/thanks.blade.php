@@ -10,7 +10,7 @@
     <div class="base-box">
         <div class="back-text">Thank you</div>
         <div class="front-text">お問い合わせありがとうございました</div>
-        <button class="button-submit" type="">HOME</button>
+        <a class="button-submit" href="/">HOME</a>
     </div>
 </body>
 

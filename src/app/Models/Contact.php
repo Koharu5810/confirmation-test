@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 
 class Contact extends Model
 {
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected $fillable = [
         'uuid',
         'first_name',
@@ -32,11 +37,6 @@ class Contact extends Model
         static::creating(function ($model){
             $model->uuid = (string) Str::uuid();
         });
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
     }
 
     use HasFactory;

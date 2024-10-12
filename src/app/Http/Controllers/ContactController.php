@@ -12,25 +12,27 @@ class ContactController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return view('index', compact('categories'));
     }
 // お問い合わせフォーム→確認画面
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
         $tell = implode('-',[$request->tell1, $request->tell2, $request->tell3]);
 
+        $category = Category::find($request->category_id);
+
         $contact = $request->only([
-            'first_name','last_name', 'gender', 'email', 'address', 'building', 'content', 'detail'
+            'last_name', 'first_name','gender', 'email', 'address', 'building', 'category_id', 'detail'
         ]);
 
         // 値を加工する必要があるカラムの処理
         $contact['tell'] = $tell;
-        $category = Category::find($request->category_id);
 
         if($category){
-            $contact['category_id'] = $category->content;
+            $contact['category'] = $category->content;
         } else {
-            $contact['category_id'] = null;
+            $contact['category'] = null;
         }
 
         return view('confirm', compact('contact'));
@@ -60,11 +62,4 @@ class ContactController extends Controller
         return view('thanks');
     }
 
-// お問い合わせフォーム入力ページバリデーション
-public function create(ContactRequest $request)
-{
-    $form = $request->all();
-    Contact::create($form);
-    return redirect('/');
-}
 }

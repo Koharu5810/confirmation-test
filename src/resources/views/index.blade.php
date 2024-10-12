@@ -25,8 +25,11 @@
                 <input type="text" name="first_name" placeholder="例:太郎" value="{{ old('first_name') }}" />
             </div>
             <div class="form__error">
-                @error('name')
+                @error('last_name')
                 {{ $message }}
+                @error('first_name')
+                {{ $message }}
+                @enderror
                 @enderror
             </div>
         </div>
@@ -78,10 +81,16 @@
                 </div>
             </div>
             <div class="form__error">
-                @error('tell')
+                @error('tell1')
                 {{ $message }}
                 @enderror
-            </div>
+                @error('tell2')
+                {{ $message }}
+                @enderror
+                @error('tell3')
+                {{ $message }}
+                @enderror
+                        </div>
         </div>
 {{-- 住所 --}}
         <div class="form__group">
@@ -122,13 +131,12 @@
                 <span class="form__label--item">お問い合わせの種類</span>
                 <span class="form__label--required">※</span>
             </div>
-            <div class="form__group-content">
                 <div class="form__input--text">
-                    <select class="form__input-select" name="category_id">
-                        <option value="" disabled selected>選択してください</option>
+                    <select name="category_id">
+                        <option selected disabled>選択してください</option>
                         @foreach( $categories as $category)
                             <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif>
-                                {{ $category->content }}
+                            {{ $category->content }}
                             </option>
                         @endforeach
                     </select>
