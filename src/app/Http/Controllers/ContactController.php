@@ -66,4 +66,26 @@ class ContactController extends Controller
         return view('thanks');
     }
 
+// 管理画面の表示
+    public function admin()
+    {
+        $lists = Contact::all()->map(function ($contact) {
+            $contact->gender_label = match ($contact->gender) {
+                1 => '男性',
+                2 => '女性',
+                3 => 'その他',
+            };
+
+            // category_idにCategoryモデルのcontentカラムを代入
+            $category = Category::find($contact->category_id);
+            $contact->content = $category ? $category->content : null;
+
+            return $contact;
+        });
+
+        $lists = Contact::Paginate(7);
+
+        return view('admin', compact('lists'));
+    }
+
 }

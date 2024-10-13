@@ -1,0 +1,52 @@
+.content-group {
+    width: 1230px;
+}
+
+.foruser-group {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid pink;
+}
+.paginate-group {
+    border: 1px solid orange;
+    margin: 0;
+}
+
+.pagination-group {
+    display: flex;
+    justify-content: center;
+    margin: 1px; /* ページネーション全体の余白 */
+}
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ccc; /* 全体を囲むボーダー */
+    border-radius: 5px;
+}
+.pagination li {
+    margin: 0; /* 個々のページの間に隙間を作らない */
+}
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 2px 7px; /* ボタンサイズ */
+    text-decoration: none;
+    color: #333;
+    border-left: 1px solid #ccc; /* 各ページ番号を区切る線 */
+}
+.pagination li:first-child a,
+.pagination li:first-child span {
+    border-left: none; /* 最初のページリンクには区切り線を表示しない */
+}
+.pagination .active span {
+    background-color: #8b5c36; /* アクティブなページの背景色 */
+    color: white;
+}
+.pagination li.disabled span {
+    color: #999;
+    cursor: not-allowed;
+}
+.pagination li a:hover {
+    background-color: #ddd; /* ホバー時の背景色 */
+}

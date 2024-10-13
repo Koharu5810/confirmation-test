@@ -12,7 +12,6 @@
 @endsection
 
 @section('content')
-
 <div>
     <div>
         <h3 calss="content-title">Register</h3>
@@ -70,5 +69,4 @@
         </form>
     </div>
 </div>
-
 @endsection

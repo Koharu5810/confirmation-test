@@ -51,10 +51,4 @@ class AuthController extends Controller
         }
     }
 
-// 管理画面の表示
-    public function admin()
-    {
-        return view('admin');
-    }
-
 }
