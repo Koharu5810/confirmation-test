@@ -2,7 +2,9 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    {{-- Bootstrap --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 @endsection
 
 @section('button')
@@ -78,13 +80,41 @@
                     <td class="admin-table__item">{{ $contact['email'] }}</td>
                     <td class="admin-table__item">{{ $contact['content'] }}</td>
                     <td class="admin-table__item">
-                        <button>
-                            詳細
-                        </button>
+                        {{-- モーダル用詳細ボタン --}}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal" data-contact-id="{{ $contact['id'] }}">詳細</button>
+                        {{-- モーダルウィンドウ --}}
+                        <div id="detailModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                {{-- 閉じるボタン --}}
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-dismiss="modal">&times;</button>
+                                </div>
+                                {{-- 詳細欄 --}}
+                                <div class="modal-body">
+                                    <p>お名前: {{ $contact->last_name }} {{ $contact->first_name }}</p>
+                                    <p>性別: {{ $contact->getGenderTextAttribute() }}</p>
+                                    <p>メールアドレス: {{ $contact->email }}</p>
+                                    <p>電話番号: {{ $contact->tell }}</p>
+                                    <p>住所: {{ $contact->address }}</p>
+                                    <p>建物名: {{ $contact->building }}</p>
+                                    <p>お問い合わせの種類: {{ $contact->content }}</p>
+                                    <p>お問い合わせ内容: {{ $contact->detail }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button>削除</button>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+    {{-- Bootstrap --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 @endsection
