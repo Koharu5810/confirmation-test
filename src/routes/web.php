@@ -33,3 +33,6 @@ Route::get('/admin', [ContactController::class, 'admin'])->name('admin');
 // Route::middleware('auth')->group(function() {
 //     Route::get('/admin', [AuthController::class, 'admin']);
 // });
+
+// 管理画面
+Route::get('/search', [ContactController::class, 'search'])->name('contacts.search');

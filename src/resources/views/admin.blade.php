@@ -18,7 +18,35 @@
 
 {{-- 検索フォーム --}}
     <div>
-
+        <form action="/search" method="GET">
+            @csrf
+        {{-- 検索窓 --}}
+            <input class="" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="名前やメールアドレスを入力してください" />
+        {{-- 性別 --}}
+            <select class="" name="gender">
+                <option selected disabled>性別</option>
+                @foreach($genders as $value => $label)
+                    <option value="{{ $value }}" {{ request('gender') == $value ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                @endforeach
+            </select>
+        {{-- お問い合わせの種類 --}}
+            <select name="category_id">
+                <option selected disabled>お問い合わせの種類</option>
+                @foreach( $categories as $category)
+                    <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif>
+                        {{ $category->content }}
+                    </option>
+                @endforeach
+            </select>
+        {{-- 年月日 --}}
+            <input type="date" name="date" id="date" value="年/月/日">
+        {{-- 検索ボタン --}}
+            <button type="submit" name="submit">検索</button>
+        {{-- リセットボタン --}}
+            <a href="{{ url('/admin') }}" name="reset">リセット</a>
+        </form>
     </div>
 
 {{-- CSV・ページネーション --}}
@@ -27,7 +55,7 @@
             <button class="csv_button">エクスポート</button>
         </div>
         <div class="paginate-group">
-            {{ $lists->links('vendor.pagination.user') }}
+            {{ $contacts->links('vendor.pagination.user') }}
         </div>
     </div>
 
@@ -43,15 +71,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($lists as $list)
+                @foreach($contacts as $contact)
                 <tr class="admin-table__row">
-                    <td class="admin-table__item">
-                        {{ $list['last_name'] }}
-                        {{ $list['first_name'] }}
-                    </td>
-                    <td class="admin-table__item">{{ $list['gender_label'] }}</td>
-                    <td class="admin-table__item">{{ $list['email'] }}</td>
-                    <td class="admin-table__item">{{ $list['content'] }}</td>
+                    <td class="admin-table__item">{{ $contact['last_name'] }}{{ $contact['first_name'] }}</td>
+                    <td class="admin-table__item">{{ $contact['gender_text'] }}</td>
+                    <td class="admin-table__item">{{ $contact['email'] }}</td>
+                    <td class="admin-table__item">{{ $contact['content'] }}</td>
                     <td class="admin-table__item">
                         <button>
                             詳細

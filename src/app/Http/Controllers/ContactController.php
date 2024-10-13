@@ -69,23 +69,58 @@ class ContactController extends Controller
 // 管理画面の表示
     public function admin()
     {
-        $lists = Contact::all()->map(function ($contact) {
-            $contact->gender_label = match ($contact->gender) {
-                1 => '男性',
-                2 => '女性',
-                3 => 'その他',
-            };
+        $contacts = Contact::Paginate(7);
+
+        foreach ($contacts as $contact) {
+            // Contactモデル内のgetGenderTextAttribute()を読み込み性別データをテキスト化
+            $contact->gender_text = $contact->getGenderTextAttribute();
 
             // category_idにCategoryモデルのcontentカラムを代入
             $category = Category::find($contact->category_id);
             $contact->content = $category ? $category->content : null;
+        };
 
-            return $contact;
-        });
+        $genders = [
+            0 => '全て',
+            1 => '男性',
+            2 => '女性',
+            3 => 'その他',
+        ];
 
-        $lists = Contact::Paginate(7);
+        $categories = Category::all();
 
-        return view('admin', compact('lists'));
+        return view('admin', compact('contacts', 'categories', 'genders'));
     }
 
+// 管理画面での検索
+    public function search(Request $request)
+    {
+        // リセットボタンが押された時の処理
+        if ($request->has('reset')) {
+            return redirect()->action([ContactController::class, 'admin']);
+        };
+
+        // 完全一致または部分一致検索の定義
+        $exactMatch = $request->input('exact_match', false);
+
+        $contacts = Contact::query()
+            ->NameSearch($request->name, $exactMatch)
+            ->EmailSearch($request->email, $exactMatch)
+            ->GenderSearch($request->gender)
+            ->CategorySearch($request->category_id)
+            ->DateSearch($request->date)
+            ->paginate(7)
+            ->appends($request->except('page'));
+
+        $categories = Category::all();
+
+        $genders = [
+            0 => '全て',
+            1 => '男性',
+            2 => '女性',
+            3 => 'その他',
+        ];
+
+        return view('admin', compact('contacts', 'categories', 'genders'));
+    }
 }
