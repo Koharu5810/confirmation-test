@@ -1,5 +1,4 @@
 {{-- 管理画面 --}}
-{{-- ユーザ登録ページ --}}
 @extends('layouts.app')
 
 @section('css')
@@ -7,9 +6,9 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">login</button>
+    <button class="hedaer_button">logout</button>
 @endsection
 
 @section('content')
-test
+Adimin
 @endsection

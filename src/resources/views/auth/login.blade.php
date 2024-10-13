@@ -6,7 +6,9 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">login</button>
+    <button class="hedaer_button">
+        <a href="/register">register</a>
+    </button>
 @endsection
 
 @section('content')
@@ -17,7 +19,7 @@
     </div>
 
     <div class="form-container">
-        <form class="login-form" action="/login" method="post">
+        <form class="login-form" action="{{ route('login') }}" method="POST">
             @csrf
 {{-- メールアドレス --}}
             <div class="login-form__group">
@@ -49,7 +51,7 @@
             </div>
 {{-- 登録ボタン --}}
             <div class="login-form__button">
-                <button class="login-form__button-submit">登録</button>
+                <button class="login-form__button-submit" type="submit">ログイン</button>
             </div>
         </form>
     </div>

@@ -6,7 +6,9 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">login</button>
+    <button class="hedaer_button">
+        <a href="/login">login</a>
+    </button>
 @endsection
 
 @section('content')
@@ -63,7 +65,7 @@
             </div>
 {{-- 登録ボタン --}}
             <div class="register-form__button">
-                <button class="register-form__button-submit">登録</button>
+                <button class="register-form__button-submit" type="submit">登録</button>
             </div>
         </form>
     </div>

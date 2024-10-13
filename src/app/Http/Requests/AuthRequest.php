@@ -23,12 +23,21 @@ class AuthRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // passwordはconfirmedの制約は今回は不要?
-            'password' => ['required', 'string', 'max:255'],
-        ];
+        if ($this->is('register')) {
+            return [
+                'name' => ['required', 'string'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                // passwordはconfirmedの制約は今回は不要?
+                'password' => ['required', 'string', 'max:255'],
+            ];
+        } elseif ($this->is('login')) {
+            return [
+                'email' => ['required', 'string', 'email', 'max:255'],
+                // passwordはconfirmedの制約は今回は不要?
+                'password' => ['required', 'string', 'max:255'],
+            ];
+        }
+        return [];
     }
 
     public function messages()

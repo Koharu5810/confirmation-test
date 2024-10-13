@@ -25,9 +25,11 @@ Route::post('/contacts', [ContactController::class, 'store']);
 // 新規登録・ログイン画面
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'store']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-
+Route::get('/admin', [AuthController::class, 'admin'])->name('admin');
 // Fortify認証（認証されれば管理画面へ）
-Route::middleware('auth')->group(function() {
-    Route::get('/admin', [AuthController::class,'login']);
-});
+// Route::middleware('auth')->group(function() {
+//     Route::get('/admin', [AuthController::class, 'admin']);
+// });
