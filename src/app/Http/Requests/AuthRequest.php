@@ -25,8 +25,9 @@ class AuthRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'password', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // passwordはconfirmedの制約は今回は不要?
+            'password' => ['required', 'string', 'max:255'],
         ];
     }
 
