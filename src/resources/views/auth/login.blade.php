@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-container">
-        <form class="login-form" action="{{ route('login') }}" method="POST">
+        <form class="login-form" action="/login" method="POST">
             @csrf
 {{-- メールアドレス --}}
             <div class="login-form__group">

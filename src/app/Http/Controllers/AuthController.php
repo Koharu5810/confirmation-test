@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\User;
-use App\Models\Auth;
+use App\Models\User;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +20,7 @@ class AuthController extends Controller
     {
         $auth = $request->only(['name', 'email', 'password']);
         $auth['password'] = bcrypt($auth['password']);  // パスワードをハッシュ化（セキュリティ上の対応）
-        Auth::create($auth);
+        User::create($auth);
 
         return redirect('admin');
     }
@@ -37,17 +36,17 @@ class AuthController extends Controller
         $admin_users = $request->only(['email', 'password']);
 
         // ID以外でDB検索
-        $user = Auth::where('email', $admin_users['email'])->first();
+        $user = User::where('email', $admin_users['email'])->first();
 
         if ($user && Hash::check($admin_users['password'], $user->password)) {
             //ユーザをログインさせる
-            Auth::login($user);
+            AuthFacade::login($user);
 
             //認証成功後管理画面へ
             return redirect()->route('admin');
         } else {
             // 認証失敗時ログイン画面にリダイレクト
-            return redirect()->back();
+            return redirect()->back()->withErrors(['login' => 'メールアドレスまたはパスワードが正しくありません']);
         }
     }
 

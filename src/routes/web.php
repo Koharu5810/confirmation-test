@@ -17,6 +17,14 @@ use App\Http\Controllers\Controller;
 |
 */
 
+// Fortify認証（認証されれば管理画面へ）
+Route::middleware('auth')->group(function() {
+    // ログイン画面→管理画面
+    Route::get('/admin', [ContactController::class, 'admin'])->name('admin');
+    // 管理画面での検索フォーム
+    Route::get('/search', [ContactController::class, 'search'])->name('contacts.search');
+});
+
 // お問い合わせフォーム
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
@@ -27,12 +35,3 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'store']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/admin', [ContactController::class, 'admin'])->name('admin');
-// Fortify認証（認証されれば管理画面へ）
-// Route::middleware('auth')->group(function() {
-//     Route::get('/admin', [AuthController::class, 'admin']);
-// });
-
-// 管理画面
-Route::get('/search', [ContactController::class, 'search'])->name('contacts.search');
