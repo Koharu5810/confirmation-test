@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FashionablyLate</title>
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    {{-- フォント --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     @yield('css')
     @livewireStyles
 </head>
 
 <body>
     <header>
-        <div>
-            <h2 class="content-logo">FashionablyLate</h2>
+        <div class="header">
+            <div class="header-left"></div>
+            <div class="header__logo">
+                <h2>FashionablyLate</h2>
+            </div>
+            <div class="header__button">
+                @yield('button')
+            </div>
         </div>
-        <div>
-            @yield('button')
+        <div class="header__title">
+            <h3 class="header__title-logo">@yield('title')</h3>
         </div>
     </header>
 

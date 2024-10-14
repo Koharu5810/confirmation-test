@@ -1,5 +1,31 @@
-.content-logo {
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1230px;
+    margin: 0 auto;
+    padding-top: 0;
+    line-height: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.header__logo {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(136, 121, 107);
+}
+.header__button {
+    border: 1px solid blue;
 }
 
-.content-title {
+/* タイトル部分 */
+.header__title {
+    margin: 0 auto;
+    max-width: 1230px;
+    text-align: center;
+}
+.header__title-logo {
+    font: bold;
+    font-family: "Playfair Display", serif;
+    color: rgb(136, 121, 107);
 }
