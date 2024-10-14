@@ -70,6 +70,7 @@
                     <th class="admin-table__header">性別</th>
                     <th class="admin-table__header">メールアドレス</th>
                     <th class="admin-table__header">お問い合わせの種類</th>
+                    <th class="admin-table__header"></th>
                 </tr>
             </thead>
             <tbody>
@@ -81,64 +82,67 @@
                     <td class="admin-table__item">{{ $contact['content'] }}</td>
                     <td class="admin-table__item">
                         {{-- モーダル用詳細ボタン --}}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal" data-contact-id="{{ $contact['id'] }}">詳細</button>
-                        {{-- モーダルウィンドウ --}}
-                        {{-- @if($showModal) --}}
-                        <div id="detailModal" class="modal" style="display: none;">
-                            <div class="modal-content">
-                                {{-- 閉じるボタン --}}
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-dismiss="modal">&times;</button>
-                                </div>
-                                {{-- 詳細欄 --}}
-                                <div class="modal-body">
-                                    <table class="modal-group">
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">お名前</th>
-                                            <td class="modal-content">{{ $contact['last_name'] }} {{ $contact['first_name'] }}
-                                            </td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">性別</th>
-                                            <td class="modal-content">                                            {{ $contact['getGenderTextAttribute()'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">メールアドレス</th>
-                                            <td class="modal-content">{{ $contact['email'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">電話番号</th>
-                                            <td class="modal-content">{{ $contact['tell'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">住所</th>
-                                            <td class="modal-content">{{ $contact['address'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">建物名</th>
-                                            <td class="modal-content">{{ $contact['building'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">お問い合わせの種類</th>
-                                            <td class="modal-content">{{ $contact['content'] }}</td>
-                                        </tr>
-                                        <tr class="modal-row">
-                                            <th class="modal-ttl">お問い合わせ内容</th>
-                                            <td class="modal-content">{{ $contact['detail'] }}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button>削除</button>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="modal__open-button" wire:click="openModal({{ $contact['id'] }})">詳細</button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+        <!-- モーダルウィンドウ -->
+    @if($showModal)
+    <div class="modal-wrapper">
+        <div class="modal-window">
+            <button wire:click="closeModal()" type="button" class="modal-close">×</button>
+            <table class="modal__content">
+                <tr class="modal-inner">
+                    <th class="modal-ttl">お名前</th>
+                    <td class="modal-data">
+                        {{ $contact['last_name'] }} <span class="space"></span>
+                        <span class="firstName">{{ $contact['first_name'] }}</span>
+                    </td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">性別</th>
+                    <td class="modal-data">{{ $contact['gender_text'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">メールアドレス</th>
+                    <td class="modal-data">{{ $contact['email'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">電話番号</th>
+                    <td class="modal-data">{{ $contact['tell'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">住所</th>
+                    <td class="modal-data">{{ $contact['address'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">建物名</th>
+                    <td class="modal-data">{{ $contact['building'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl">お問い合わせの種類</th>
+                    <td class="modal-data">{{ $contact['category']['content'] }}</td>
+                </tr>
+                <tr class="modal-inner">
+                    <th class="modal-ttl--last">お問い合わせ内容</th>
+                    <td class="modal-data--last">{{ $contact['detail'] }}</td>
+                </tr>
+            </table>
+            <form class="delete-form" action="/delete" method="post">
+                @method('delete')
+                @csrf
+                <input type="hidden" name="id" value="{{ $contact['id'] }}" />
+                <button class="delete-btn">削除</button>
+            </form>
+        </div>
+    </div>
+    @endif
+
+    {{-- @livewire('modal') --}}
 
     {{-- Bootstrap --}}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

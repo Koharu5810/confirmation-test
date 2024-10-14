@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Http\Livewire\Modal;
 
 class ContactController extends Controller
 {
@@ -89,7 +90,8 @@ class ContactController extends Controller
 
         $categories = Category::all();
 
-        return view('admin', compact('contacts', 'categories', 'genders'));
+        $showModal = false;
+        return view('admin', compact('contacts', 'categories', 'genders', 'showModal'));
     }
 
 // 管理画面での検索
