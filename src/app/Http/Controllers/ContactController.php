@@ -45,12 +45,8 @@ class ContactController extends Controller
 // 確認画面→Thanksページ／データベース挿入
     public function store(Request $request)
     {
-        dd($request->all());
-        
-        $tell = implode('-',[$request->tell1, $request->tell2, $request->tell3]);
-
         $contact = $request->only([
-            'last_name', 'first_name', 'email','tell', 'address', 'building', 'content', 'detail', 'category_id'
+            'last_name', 'first_name', 'email', 'address', 'building', 'content', 'detail', 'category_id'
         ]);
 
         // 値を加工する必要があるカラムの処理
@@ -62,6 +58,8 @@ class ContactController extends Controller
         } else {
             $contact['gender'] = 3;
         }
+
+        $tell = implode('-',[$request->tell1, $request->tell2, $request->tell3]);
         $contact['tell'] = $tell;
 
         $contact['category_id'] = $request->category_id;

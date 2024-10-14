@@ -1,8 +1,40 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
 .base-box {
+    display: flex;
+    flex-direction: column; /* 縦方向に要素を配置 */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    border: 1px solid red;
 }
 .back-text {
+    font-size: 9rem;
+    color: rgba(130, 117, 106, 0.1);
+    position: absolute; /* 背景テキストを絶対位置に配置 */
+    z-index: 1; /* 背景テキストの層を設定 */
 }
 .front-text {
+    color: rgb(136, 121, 107);
+    font-weight: bold;
+    margin: 20px 0; /* 上下のマージン */
+    z-index: 2; /* 前景テキストの層を設定 */
 }
-.button-submit {
+.button {
+    font-style: bold;
+    background-color: rgba(130, 117, 106);
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 80px;
+    margin: 0 5px;
+    padding: 5px;
+    display: inline-block;
+    z-index: 2; /* 前景テキストの層を設定 */
 }
