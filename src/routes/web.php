@@ -5,6 +5,8 @@ use App\Models\Category;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\CustomAuthenticatedSessionController;
+use App\Models\Contact;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin', [ContactController::class, 'admin'])->name('admin');
     // 管理画面での検索フォーム
     Route::get('/search', [ContactController::class, 'search'])->name('contacts.search');
+    // ログアウト（Laravel標準でOK？）
+    Route::post('/logout', [CustomAuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 // お問い合わせフォーム

@@ -8,7 +8,10 @@
 @endsection
 
 @section('button')
-    <button class="header_button">logout</button>
+    <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <button class="header_button" type="submit">logout</button>
+    </form>
 @endsection
 
 @section('title')
