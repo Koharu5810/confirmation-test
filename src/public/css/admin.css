@@ -50,3 +50,28 @@
 .pagination li a:hover {
     background-color: #ddd; /* ホバー時の背景色 */
 }
+
+
+
+.hedaer_button {}
+.contet-group {}
+.content-title {}
+.csv_button {}
+.paginate-group {}
+.admin-table {}
+.admin-table__inner {}
+.admin-table__row {}
+.admin-table__header {}
+.admin-table__item {}
+.modal__open-button {}
+.modal-wrapper {}
+.modal-window {}
+.modal-close {}
+.modal__content {}
+.modal-inner {}
+.modal-ttl {}
+.modal-data {}
+.modal-ttl--last {}
+.modal-data--last {}
+.delete-form {}
+.delete-btn {}

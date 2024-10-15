@@ -4,28 +4,38 @@
     align-items: center;
     max-width: 1230px;
     margin: 0 auto;
+    height: 70px;
     padding-top: 0;
     line-height: 10px;
     border-bottom: 1px solid #ddd;
+}
+.header__left {
+    flex-grow: 1;
 }
 .header__logo {
     font-family: "Playfair Display", serif;
     font-size: 18px;
     font-weight: bold;
     color: rgb(136, 121, 107);
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .header__button {
-    border: 1px solid blue;
+    margin-right: 20px;
 }
 
 /* タイトル部分 */
-.header__title {
+.main__title {
     margin: 0 auto;
     max-width: 1230px;
     text-align: center;
 }
-.header__title-logo {
+.main__title-logo {
     font: bold;
+    font-size: 18px;
     font-family: "Playfair Display", serif;
     color: rgb(136, 121, 107);
 }

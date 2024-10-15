@@ -18,7 +18,7 @@
 <body>
     <header>
         <div class="header">
-            <div class="header-left"></div>
+            <div class="header__left"></div>
             <div class="header__logo">
                 <h2>FashionablyLate</h2>
             </div>
@@ -26,15 +26,18 @@
                 @yield('button')
             </div>
         </div>
-        <div class="header__title">
-            <h3 class="header__title-logo">@yield('title')</h3>
-        </div>
     </header>
 
     <main>
-        @yield('content')
+        <div class="main-container">
+            <div class="main__title">
+                <h3 class="main__title-logo">@yield('title')</h3>
+            </div>
 
-        @livewireScripts
+            @yield('content')
+
+            @livewireScripts
+        </div>
     </main>
 </body>
 

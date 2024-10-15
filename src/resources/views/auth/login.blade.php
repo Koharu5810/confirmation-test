@@ -6,17 +6,15 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">
-        <a href="/register">register</a>
-    </button>
+    <a class="header_button" href="/register">register</a>
+@endsection
+
+@section('title')
+    Login
 @endsection
 
 @section('content')
 <div>
-    <div>
-        <h3 calss="content-title">Login</h3>
-    </div>
-
     <div class="form-container">
         <form class="login-form" action="/login" method="POST">
             @csrf

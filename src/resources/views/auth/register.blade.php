@@ -6,17 +6,15 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">
-        <a href="/login">login</a>
-    </button>
+    <a class="header_button" href="/login">login</a>
+@endsection
+
+@section('title')
+    Register
 @endsection
 
 @section('content')
 <div>
-    <div>
-        <h3 calss="content-title">Register</h3>
-    </div>
-
     <div class="form-container">
         <form class="register-form" action="/register" method="post">
             @csrf
@@ -26,7 +24,7 @@
                     <label class="register-form__label--item" for="name">お名前</label>
                 </div>
                 <div class="register-form__content">
-                    <input type="text" name="name" placeholder="例:山田  太郎" value="{{ old('name') }}">
+                    <input type="text" name="name" placeholder="例: 山田  太郎" value="{{ old('name') }}">
                 </div>
                 <div class="register-form__error">
                     @error('name')
@@ -40,7 +38,7 @@
                     <label class="register-form__label--item" for="email">メールアドレス</label>
                 </div>
                 <div class="register-form__content">
-                    <input type="email" name="email" placeholder="例:test@example.com" value="{{ old('email') }}">
+                    <input type="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
                 </div>
                 <div class="register-form__error">
                     @error('email')
@@ -54,7 +52,7 @@
                     <label class="register-form__label--item" for="password">パスワード</label>
                 </div>
                 <div class="register-form__content">
-                    <input type="password" name="password" placeholder="例:coachtech1106" value="{{ old('password') }}">
+                    <input type="password" name="password" placeholder="例: coachtech1106" value="{{ old('password') }}">
                 </div>
                 <div class="register-form__error">
                     @error('password')
