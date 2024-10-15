@@ -92,12 +92,14 @@
             </tbody>
         </table>
     </div>
-{{--
-        <!-- モーダルウィンドウ -->
-    @if($showModal)
+
+{{-- モーダルウィンドウ --}}
+    {{-- @if($showModal) --}}
     <div class="modal-wrapper">
         <div class="modal-window">
-            <button wire:click="closeModal()" type="button" class="modal-close">×</button>
+            <div class="modal__close">
+                <button wire:click="closeModal()" type="button" class="modal__close-button">×</button>
+            </div>
             <table class="modal__content">
                 <tr class="modal-inner">
                     <th class="modal-ttl">お名前</th>
@@ -131,19 +133,21 @@
                     <td class="modal-data">{{ $contact['category']['content'] }}</td>
                 </tr>
                 <tr class="modal-inner">
-                    <th class="modal-ttl--last">お問い合わせ内容</th>
-                    <td class="modal-data--last">{{ $contact['detail'] }}</td>
+                    <th class="modal-ttl">お問い合わせ内容</th>
+                    <td class="modal-data">{{ $contact['detail'] }}</td>
                 </tr>
             </table>
-            <form class="delete-form" action="/delete" method="post">
-                @method('delete')
-                @csrf
-                <input type="hidden" name="id" value="{{ $contact['id'] }}" />
-                <button class="delete-btn">削除</button>
-            </form>
+            <div >
+                <form class="delete-form" action="/delete" method="post">
+                    @method('delete')
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $contact['id'] }}" />
+                    <button class="delete-button">削除</button>
+                </form>
+            </div>
         </div>
     </div>
-    @endif --}}
+    {{-- @endif --}}
 
     {{-- @livewire('modal') --}}
 

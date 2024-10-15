@@ -148,22 +148,53 @@
 .modal-wrapper {
 }
 .modal-window {
+    min-width: 50%;
+    width: 480px;
+    margin: 0 auto;
+    text-align: right;
+    border: 1px solid rgb(130, 117, 106);
 }
-.modal-close {
+.modal__close {
+    margin: 0 auto;
+    text-align: right;
+    margin: 10px 10px;
+}
+.modal__close-button {
+    background-color: #fff;
+    color: rgb(130, 117, 106);
+    border: 1px solid rgb(130, 117, 106);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-align: center;
 }
 .modal__content {
+    margin: 0 auto;
+    text-align: center;
+    margin: 10px 40px;
 }
 .modal-inner {
 }
 .modal-ttl {
+    padding: 5px;
+    text-align: left;
+    color: rgb(130, 117, 106);
+    width: 40%;
 }
 .modal-data {
-}
-.modal-ttl--last {
-}
-.modal-data--last {
+    text-align: left;
+    padding-left: 20px;
+    color: rgb(130, 117, 106);
 }
 .delete-form {
+    margin: 0 auto;
+    text-align: center;
 }
-.delete-btn {
+.delete-button {
+    background-color: rgb(170, 42, 42);
+    color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    margin: 20px 0;
 }
