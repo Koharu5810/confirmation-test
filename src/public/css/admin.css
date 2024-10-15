@@ -1,25 +1,83 @@
+.header_button {
+    background-color: #f6f6f6;
+    color: rgb(219, 201, 185);
+    font-family: "Playfair Display", serif;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid rgb(219, 201, 185);
+    margin-right: 20px;
+    padding: 5px 15px;
+}
 .content-group {
-    width: 1230px;
+    max-width: 1230px;
+    margin: 0 auto;
 }
 
+/* 検索列 */
+.search-group {
+    margin-bottom: 10px;
+}
+.search-form {
+    display: flex;
+    gap: 7px;
+    justify-content: space-between;
+    padding: 10px;
+}
+.search-form__input,
+.search-form__select {
+    color: rgb(136, 121, 107);
+    background-color: #f4f4f4;
+    padding: 7px;
+    border: none;
+}
+.search-form__search-button {
+    background-color: rgb(130, 117, 106);
+    color: #fff;
+    border: none;
+    padding: 3px 10px;
+    width: 80px;
+}
+.search-form__reset-button {
+    background-color: rgb(218, 198, 181);
+    color: #fff;
+    text-decoration: none;
+    padding: 3px 10px;
+    width: 80px;
+    border: none;
+}
+.search-form__reset-button a {
+    color: #fff;
+    text-decoration: none;
+}
+/* CSV・ページネーショングループ */
 .foruser-group {
     display: flex;
     justify-content: space-between;
-    border: 1px solid pink;
+    align-items: center;
+    padding: 10px;
+}
+.csv_button {
+    background-color: rgb(236, 233, 230);
+    color: rgb(130, 117, 106);
+    text-decoration: none;
+    padding: 5px 10px;
+    width: 120px;
+    border: none;
 }
 .paginate-group {
-    border: 1px solid orange;
+    display: flex; /* ページネーションをフレックスボックスにする */
+    justify-content: flex-end; /* ページネーションを右寄せ */
     margin: 0;
+    padding: 0;
 }
-
 .pagination-group {
-    display: flex;
-    justify-content: center;
-    margin: 1px; /* ページネーション全体の余白 */
+    margin: 0;
+    padding: 0;
 }
 .pagination {
     display: flex;
     list-style-type: none;
+    margin: 0;
     padding: 0;
     border: 1px solid #ccc; /* 全体を囲むボーダー */
     border-radius: 5px;
@@ -40,7 +98,7 @@
     border-left: none; /* 最初のページリンクには区切り線を表示しない */
 }
 .pagination .active span {
-    background-color: #8b5c36; /* アクティブなページの背景色 */
+    background-color: rgb(130, 117, 106); /* アクティブなページの背景色 */
     color: white;
 }
 .pagination li.disabled span {
@@ -51,27 +109,61 @@
     background-color: #ddd; /* ホバー時の背景色 */
 }
 
+/* 問い合わせ一覧表示テーブル */
+.admin-table {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
+.admin-table__inner {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+.admin-table__row {
+    border-bottom: 1px solid #ddd;
+}
+.admin-table__header {
+    background-color: rgb(130, 117, 106);
+    color: #fff;
+    font-weight: 3;
+    padding: 10px;
+    text-align: left;
+}
+.admin-table__item {
+    color: rgb(130, 117, 106);
+    padding: 10px;
+    text-align: left;
+}
+.modal__open-button {
+    background-color: #fff;
+    color: rgb(130, 117, 106);
+    border: 1px solid rgb(130, 117, 106);
+    border-radius: 3px;
+}
 
-
-.hedaer_button {}
-.contet-group {}
-.content-title {}
-.csv_button {}
-.paginate-group {}
-.admin-table {}
-.admin-table__inner {}
-.admin-table__row {}
-.admin-table__header {}
-.admin-table__item {}
-.modal__open-button {}
-.modal-wrapper {}
-.modal-window {}
-.modal-close {}
-.modal__content {}
-.modal-inner {}
-.modal-ttl {}
-.modal-data {}
-.modal-ttl--last {}
-.modal-data--last {}
-.delete-form {}
-.delete-btn {}
+/* モーダルウィンドウ */
+.modal-wrapper {
+}
+.modal-window {
+}
+.modal-close {
+}
+.modal__content {
+}
+.modal-inner {
+}
+.modal-ttl {
+}
+.modal-data {
+}
+.modal-ttl--last {
+}
+.modal-data--last {
+}
+.delete-form {
+}
+.delete-btn {
+}

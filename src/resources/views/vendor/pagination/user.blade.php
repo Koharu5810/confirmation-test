@@ -10,24 +10,36 @@
             <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">&lt;</a></li>
         @endif
 
-        {{-- Pagination本体 --}}
+        {{-- 1ページ目のリンク --}}
+        @if ($paginator->currentPage() > 3)
+            <li><a href="{{ $paginator->url(1) }}">1</a></li>
+            <li class="disabled" aria-disabled="true"><span>…</span></li>
+        @endif
+
+        {{-- 中間ページへのリンク --}}
         @foreach ($elements as $element)
-            {{-- "Three Dots" Separator --}}
+            {{-- 省略 --}}
             @if (is_string($element))
-                <li class="disabled"><span>{{ $element }}</span></li>
+                <li class="disabled" aria-disabled="true"><span>{{ $element }}</span></li>
             @endif
 
-            {{-- ページリンク部分 --}}
+            {{-- 数字のリンク --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
                         <li class="active"><span>{{ $page }}</span></li>
-                    @else
+                    @elseif ($page == $paginator->currentPage() - 1 || $page == $paginator->currentPage() + 1)
                         <li><a href="{{ $url }}">{{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif
         @endforeach
+
+        {{-- 最終ページのリンク --}}
+        @if ($paginator->currentPage() < $paginator->lastPage() - 2)
+            <li class="disabled" aria-disabled="true"><span>…</span></li>
+            <li><a href="{{ $paginator->url($paginator->lastPage()) }}">{{ $paginator->lastPage() }}</a></li>
+        @endif
 
         {{-- ＞ --}}
         @if ($paginator->hasMorePages())

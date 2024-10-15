@@ -8,24 +8,24 @@
 @endsection
 
 @section('button')
-    <button class="hedaer_button">logout</button>
+    <button class="header_button">logout</button>
+@endsection
+
+@section('title')
+    Admin
 @endsection
 
 @section('content')
-<div class="contet-group">
-{{-- タイトル --}}
-    <div>
-        <h3 calss="content-title">Admin</h3>
-    </div>
+<div class="content-group">
 
 {{-- 検索フォーム --}}
-    <div>
-        <form action="/search" method="GET">
+    <div class="search-group">
+        <form class="search-form" action="/search" method="GET">
             @csrf
         {{-- 検索窓 --}}
-            <input class="" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="名前やメールアドレスを入力してください" />
+            <input class="search-form__input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="名前やメールアドレスを入力してください" />
         {{-- 性別 --}}
-            <select class="" name="gender">
+            <select class="search-form__select" name="gender">
                 <option selected disabled>性別</option>
                 @foreach($genders as $value => $label)
                     <option value="{{ $value }}" {{ request('gender') == $value}}>
@@ -34,7 +34,7 @@
                 @endforeach
             </select>
         {{-- お問い合わせの種類 --}}
-            <select name="category_id">
+            <select class="search-form__select" name="category_id">
                 <option selected disabled>お問い合わせの種類</option>
                 @foreach( $categories as $category)
                     <option value="{{ $category->id }}">
@@ -43,19 +43,19 @@
                 @endforeach
             </select>
         {{-- 年月日 --}}
-            <input type="date" name="date" id="date" value="年/月/日">
+            <input class="search-form__input" type="date" name="date" id="date" value="年/月/日">
         {{-- 検索ボタン --}}
-            <button type="submit" name="submit">検索</button>
+            <button class="search-form__search-button" type="submit" name="submit">検索</button>
         {{-- リセットボタン --}}
-            <a href="{{ url('/admin') }}" name="reset">リセット</a>
+            <button class="search-form__reset-button">
+                <a href="{{ url('/admin') }}" name="reset">リセット</a>
+            </button>
         </form>
     </div>
 
 {{-- CSV・ページネーション --}}
     <div class="foruser-group">
-        <div>
-            <button class="csv_button">エクスポート</button>
-        </div>
+        <button class="csv_button">エクスポート</button>
         <div class="paginate-group">
             {{ $contacts->links('vendor.pagination.user') }}
         </div>
@@ -89,7 +89,7 @@
             </tbody>
         </table>
     </div>
-
+{{--
         <!-- モーダルウィンドウ -->
     @if($showModal)
     <div class="modal-wrapper">
@@ -140,7 +140,7 @@
             </form>
         </div>
     </div>
-    @endif
+    @endif --}}
 
     {{-- @livewire('modal') --}}
 
